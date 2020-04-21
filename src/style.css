@@ -57,7 +57,7 @@
   #detail-form{
     display: grid;
     gap: 10px;
-    grid-template: 80px 80px / 225px 300px;
+    grid-template: 80px / 225px;
   }
 
   #final-form{
@@ -83,7 +83,17 @@
   }
 
   #method{
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+@media (min-width: 525px) {
+  #detail-form{
+    grid-template: 80px 80px / 225px 300px;
+  }
+
+  #method{
     grid-row: 1;
     grid-column: 2;
   }
-
+}
