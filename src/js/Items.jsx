@@ -45,9 +45,8 @@ function Big_item(props){
 function Small_item(props){
     return(
         <div className="small-item inpt">
-            <label>{props.name}</label>
+            <label>{props.name} {props.desc ? <small>{props.desc}</small> : null}</label>
             <Number_select count={props.count} onClick={(delta) => props.onClick(props.name,delta)}/>
-            {props.desc ? <label>{props.desc}</label> : null}
         </div>
     )
 }

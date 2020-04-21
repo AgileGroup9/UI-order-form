@@ -98,7 +98,7 @@ class App extends React.Component {
                     </div>
                     <div class="h-divider"></div>
 
-                    <div class="form-group pretty">
+                    <div class="form-group">
                         <h4>Välj toppings:</h4>
                         {/*Extras are rendered here*/ toppings_list}
                     </div>
