@@ -125,7 +125,7 @@ class App extends React.Component {
                             <input type="text" name="name" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
                         </div>
                         <div class="form-group smal" >
-                            <label>Leveransaddress</label>
+                            <label>Leveransaddress:</label>
                             <input type="text" name="addr" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
                         </div>
                         <div class="form-group smal" >
