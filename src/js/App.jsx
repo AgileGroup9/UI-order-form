@@ -113,28 +113,28 @@ class App extends React.Component {
         
                     <div id="detail-form">
                         <div class="form-group smal" style={{"max-width": "250px"}} id="email">
-                            <label for="exampleInputEmail1">Email:</label>
-                            <input type="email" name="email" onChange={this.handle_detail_update} class="form-control" id="exampleInputEmail1" placeholder="exempel@mail.se"/>
+                            <label for="email_inpt">Email:</label>
+                            <input type="email" name="email" id="email_inpt" onChange={this.handle_detail_update} class="form-control"  placeholder="exempel@mail.se"/>
                         </div>
                         <div class="form-group smal" id="tele">
-                            <label>Telefonnummer:</label>
-                            <input type="tel" name="tel" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
+                            <label for="tel_inpt">Telefonnummer:</label>
+                            <input type="tel" name="tel" id="tel_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
                         </div>
                         <div class="form-group smal">
-                            <label>Namn:</label>
-                            <input type="text" name="name" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
+                            <label for="name_inpt">Namn:</label>
+                            <input type="text" name="name" id="name_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
                         </div>
                         <div class="form-group smal" >
-                            <label>Leveransaddress:</label>
-                            <input type="text" name="addr" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
+                            <label for="addr_inpt">Leveransaddress:</label>
+                            <input type="text" name="addr" id="addr_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
                         </div>
                         <div class="form-group smal" >
-                            <label>Postkod:</label>
-                            <input type="text" name="post_nr" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
+                            <label for="post_nr_inpt">Postkod:</label>
+                            <input type="text" name="post_nr" id="post_nr_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
                         </div>
                         <div class="form-group smal" >
-                            <label>Portkod:</label>
-                            <input type="text" name="code" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="0001"/>
+                            <label for="code_inpt">Portkod:</label>
+                            <input type="text" name="code" id="code_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="0001"/>
                         </div>
                     </div>
                     <div class="h-divider"></div>
