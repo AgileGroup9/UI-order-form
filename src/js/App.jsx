@@ -25,7 +25,12 @@ class App extends React.Component {
         // Use list_items to create a key-map for tracking the users shopping cart
         this.state = {
             cart : new Map( Array.from(this.list_items.keys()).map((e) => [e,0]) ),
-            delivery_method : "placeholder",
+            email : "",
+            name : "",
+            tel : "",
+            addr : "",
+            code : "",
+            post_nr : "",
         };
 
         // Required for intercepting onChange events from <input>
@@ -109,27 +114,27 @@ class App extends React.Component {
                     <div id="detail-form">
                         <div class="form-group smal" style={{"max-width": "250px"}} id="email">
                             <label for="exampleInputEmail1">Email:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="exempel@mail.se"/>
+                            <input type="email" name="email" onChange={this.handle_detail_update} class="form-control" id="exampleInputEmail1" placeholder="exempel@mail.se"/>
                         </div>
                         <div class="form-group smal" id="tele">
                             <label>Telefonnummer:</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
+                            <input type="text" name="tel" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
                         </div>
                         <div class="form-group smal">
                             <label>Namn:</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
+                            <input type="text" name="name" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
                         </div>
                         <div class="form-group smal" >
                             <label>Leveransaddress</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
+                            <input type="text" name="addr" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
                         </div>
                         <div class="form-group smal" >
                             <label>Postkod:</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
+                            <input type="text" name="post_nr" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
                         </div>
                         <div class="form-group smal" >
                             <label>Portkod:</label>
-                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="0001"/>
+                            <input type="text" name="code" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="0001"/>
                         </div>
                     </div>
                     <div class="h-divider"></div>
