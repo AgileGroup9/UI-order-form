@@ -118,7 +118,7 @@ class App extends React.Component {
                         </div>
                         <div class="form-group smal" id="tele">
                             <label>Telefonnummer:</label>
-                            <input type="text" name="tel" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
+                            <input type="tel" name="tel" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
                         </div>
                         <div class="form-group smal">
                             <label>Namn:</label>
