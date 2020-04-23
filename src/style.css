@@ -46,6 +46,7 @@
     flex-wrap: wrap;
     margin-left:25px;
     margin-bottom: 5px;
+    max-width: 420px;
    }
   
   .number-select {
