@@ -113,15 +113,23 @@ class App extends React.Component {
                         </div>
                         <div class="form-group smal" id="tele">
                             <label>Telefonnummer:</label>
-                            <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
                         </div>
-                        <div class="form-group smal" id="method">
-                            <label htmlFor="delivery_method">Leveransmetod</label>
-                            <select value={this.state.delivery_method} onChange={this.handle_detail_update} class="form-control" name="delivery_method" id="delivery_method">
-                                <option value="placeholder" disabled selected hidden>Välj här</option>
-                                <option value="hem">Hemleverans</option>
-                                <option value="hämta">Hämta i butik</option>
-                            </select>
+                        <div class="form-group smal">
+                            <label>Namn:</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
+                        </div>
+                        <div class="form-group smal" >
+                            <label>Leveransaddress</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
+                        </div>
+                        <div class="form-group smal" >
+                            <label>Postkod:</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
+                        </div>
+                        <div class="form-group smal" >
+                            <label>Portkod:</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="0001"/>
                         </div>
                     </div>
                     <div class="h-divider"></div>
