@@ -57,7 +57,7 @@ class App extends React.Component {
     }
 
     handle_submit(state){
-        fetch("https://ptsv2.com/t/t9egp-1587724360/post",{
+        fetch(this.post_address,{
            method: 'POST',
            mode: 'no-cors', 
            headers: {
