@@ -49,6 +49,20 @@ class App extends React.Component {
         [name]: value    });
     }
 
+    handle_submit(state){
+        fetch("https://ptsv2.com/t/t9egp-1587724360/post",{
+           method: 'POST',
+           mode: 'no-cors', 
+           headers: {
+               'Access-Control-Allow-Origin':'true',
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(state)
+        }).then((response)=>{
+            console.log("Sent state to server");
+        });
+    }
+
     render() {
         // Render toppings dynamicaly
         // Remove pizza-kit from list_items, then map each element to a tag
@@ -127,7 +141,7 @@ class App extends React.Component {
                     <div class="h-divider"></div>
                     <div id="final-form">
                         <textarea rows="2" cols="30" placeholder="Kommentarer"></textarea>
-                        <button href="https://bottegamenomale.se/" class="btn btn-primary">Gå till betalning</button>
+                        <button href="https://bottegamenomale.se/" onClick={() => this.handle_submit(this.state)} class="btn btn-primary">Gå till betalning</button>
                     </div>
                 </div>
             </div>
