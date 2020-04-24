@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /*
     A number select widget
@@ -8,13 +8,13 @@ import React from "react";
             props.onClick which expects an function that takes a int delta as param.
 */
 function Number_select(props){
-    return(
-        <div className="number-select">
-            <button className="btn btn-primary" id="minus" onClick={() => props.onClick(-1)}>-</button>
-            <span>{props.count}</span>
-            <button className="btn btn-primary" id="plus" onClick={ () => props.onClick(1)}>+</button>
-        </div>
-    )
+	return(
+		<div className="number-select">
+			<button className="btn btn-primary" id="minus" onClick={() => props.onClick(-1)}>-</button>
+			<span>{props.count}</span>
+			<button className="btn btn-primary" id="plus" onClick={ () => props.onClick(1)}>+</button>
+		</div>
+	);
 }
 
 /*
@@ -43,12 +43,12 @@ function Big_item(props){
                 props.desc as a short description following the counter
 */
 function Small_item(props){
-    return(
-        <div className="small-item inpt">
-            <label>{props.name} {props.desc ? <small>{props.desc}</small> : null}</label>
-            <Number_select count={props.count} onClick={(delta) => props.onClick(props.name,delta)}/>
-        </div>
-    )
+	return(
+		<div className="small-item inpt">
+			<label>{props.name} {props.desc ? <small>{props.desc}</small> : null}</label>
+			<Number_select count={props.count} onClick={(delta) => props.onClick(props.name,delta)}/>
+		</div>
+	);
 }
 
 export default Small_item;
