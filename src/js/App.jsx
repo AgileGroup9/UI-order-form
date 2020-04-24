@@ -14,12 +14,12 @@ class App extends React.Component {
 		this.list_items = new Map([
 			['Picollo' ,175],
 			['Grande' ,265],
-			['Salami mild 20kr / 5 skivor' ,20],
-			['Salami stark 20kr / 5 skivor' ,20],
-			['ParmaSkinka 20kr / 5 skivor',20],
-			['Prosciutto Cotto 20kr / 5 skivor' ,20],
-			['Buffelmozzarella 25kr / 125g',25],
-			['Extra deg 35kr',35],
+			['Salami mild' ,20],
+			['Salami stark' ,20],
+			['ParmaSkinka',20],
+			['Prosciutto Cotto' ,20],
+			['Buffelmozzarella',25],
+			['Extra deg',35],
 		]);
 
 		this.post_address = props.post_address;
@@ -29,10 +29,11 @@ class App extends React.Component {
 			cart : new Map( Array.from(this.list_items.keys()).map((e) => [e,0]) ),
 			email : '',
 			name : '',
-			tel : '',
-			addr : '',
-			code : '',
-			post_nr : '',
+			telNr : '',
+			address : '',
+			dorCode : '',
+			postalCode : '',
+			comments : '',
 		};
 
 		// Required for intercepting onChange events from <input>
@@ -77,8 +78,9 @@ class App extends React.Component {
 
 	state_to_json(){
 		const cart = Array.from(this.state.cart.entries());
-		var json_obj = [cart,this.state];
-		delete json_obj[1]['cart'];
+		var json_obj = Object.assign({},this.state);
+		json_obj.cart = cart;
+		json_obj.pizzakitFormSubmission = true;
 		return JSON.stringify(json_obj);
 	}
 
@@ -99,7 +101,7 @@ class App extends React.Component {
 		const sum = kostnad.reduce((acc,val) => acc + val[1], 0);
 
 		// Renders form. For info about how to add stuff, google jsx
-		// TODO: remove inline css (code smell)
+		// TODO: remove inline css (dorCode smell)
 		return(
 			<div className="container-fluid " style={{'max-width': '800px;'}}>
 				<div>
@@ -147,7 +149,7 @@ class App extends React.Component {
 						</div>
 						<div className="form-group smal" id="tele">
 							<label htmlFor="tel_inpt">Telefonnummer:</label>
-							<input type="tel" name="tel" id="tel_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="070......."/>
+							<input type="tel" name="telNr" id="tel_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="070......."/>
 						</div>
 						<div className="form-group smal">
 							<label htmlFor="name_inpt">Namn:</label>
@@ -155,20 +157,20 @@ class App extends React.Component {
 						</div>
 						<div className="form-group smal" >
 							<label htmlFor="addr_inpt">Leveransaddress:</label>
-							<input type="text" name="addr" id="addr_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
+							<input type="text" name="address" id="addr_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
 						</div>
 						<div className="form-group smal" >
 							<label htmlFor="post_nr_inpt">Postkod:</label>
-							<input type="text" name="post_nr" id="post_nr_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
+							<input type="text" name="postalCode" id="post_nr_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
 						</div>
 						<div className="form-group smal" >
 							<label htmlFor="code_inpt">Portkod:</label>
-							<input type="text" name="code" id="code_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="0001"/>
+							<input type="text" name="dorCode" id="code_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="0001"/>
 						</div>
 					</div>
 					<div className="h-divider"></div>
 					<div id="final-form">
-						<textarea rows="2" cols="30" placeholder="Kommentarer"></textarea>
+						<textarea name="comments" rows="2" cols="30" placeholder="Kommentarer" onChange={this.handle_detail_update}></textarea>
 						<button href="https://bottegamenomale.se/" onClick={() => this.handle_submit(this.post_address)} className="btn btn-primary">Gå till betalning</button>
 					</div>
 				</div>
