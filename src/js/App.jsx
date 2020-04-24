@@ -62,10 +62,17 @@ class App extends React.Component {
                'Access-Control-Allow-Origin':'true',
                'Content-Type': 'application/json'
            },
-           body: JSON.stringify(state)
+           body: this.state_to_json(),
         }).then((response)=>{
             console.log("Sent state to server");
         });
+    }
+
+    state_to_json(){
+        const cart = Array.from(this.state.cart.entries());
+        var json_obj = [cart,this.state];
+        delete json_obj[1]['cart'];
+        return JSON.stringify(json_obj);
     }
 
     render() {
