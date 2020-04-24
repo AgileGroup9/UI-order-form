@@ -88,6 +88,7 @@ class App extends React.Component {
 		const toppings = Array.from(this.list_items.keys()).slice(2);
 		const toppings_list = toppings.map((t) => {
 			return(<Small_item
+				key = {t}
 				name={t} 
 				count={this.state.cart.get(t)}
 				onClick={(name,delta) => this.handle_cart_update(name,delta)}
