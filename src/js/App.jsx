@@ -22,6 +22,8 @@ class App extends React.Component {
         ["Extra deg 35kr",35],
         ]);
 
+        this.post_address = props.post_address;
+
         // Use list_items to create a key-map for tracking the users shopping cart
         this.state = {
             cart : new Map( Array.from(this.list_items.keys()).map((e) => [e,0]) ),
@@ -64,7 +66,12 @@ class App extends React.Component {
            },
            body: this.state_to_json(),
         }).then((response)=>{
-            console.log("Sent state to server");
+            if(response.ok){
+                console.log("Delivery order accepted");
+            }
+            else{
+                console.log("Delivery order failed: " + response.body);
+            }
         });
     }
 
