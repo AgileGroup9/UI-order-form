@@ -56,8 +56,8 @@ class App extends React.Component {
 			[name]: value    });
 	}
 
-	handle_submit(){
-		fetch(this.post_address,{
+	handle_submit(target_addr){
+		fetch(target_addr,{
 			method: 'POST',
 			mode: 'no-cors', 
 			headers: {
@@ -169,7 +169,7 @@ class App extends React.Component {
 					<div className="h-divider"></div>
 					<div id="final-form">
 						<textarea rows="2" cols="30" placeholder="Kommentarer"></textarea>
-						<button href="https://bottegamenomale.se/" onClick={this.handle_submit} className="btn btn-primary">Gå till betalning</button>
+						<button href="https://bottegamenomale.se/" onClick={() => this.handle_submit(this.post_address)} className="btn btn-primary">Gå till betalning</button>
 					</div>
 				</div>
 			</div>
