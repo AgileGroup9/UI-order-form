@@ -25,7 +25,12 @@ class App extends React.Component {
         // Use list_items to create a key-map for tracking the users shopping cart
         this.state = {
             cart : new Map( Array.from(this.list_items.keys()).map((e) => [e,0]) ),
-            delivery_method : "placeholder",
+            email : "",
+            name : "",
+            tel : "",
+            addr : "",
+            code : "",
+            post_nr : "",
         };
 
         // Required for intercepting onChange events from <input>
@@ -112,7 +117,7 @@ class App extends React.Component {
                     </div>
                     <div class="h-divider"></div>
 
-                    <div class="form-group pretty">
+                    <div class="form-group">
                         <h4>Välj toppings:</h4>
                         {/*Extras are rendered here*/ toppings_list}
                     </div>
@@ -122,20 +127,28 @@ class App extends React.Component {
         
                     <div id="detail-form">
                         <div class="form-group smal" style={{"max-width": "250px"}} id="email">
-                            <label for="exampleInputEmail1">Email:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="exempel@mail.se"/>
+                            <label for="email_inpt">Email:</label>
+                            <input type="email" name="email" id="email_inpt" onChange={this.handle_detail_update} class="form-control"  placeholder="exempel@mail.se"/>
                         </div>
                         <div class="form-group smal" id="tele">
-                            <label>Telefonnummer:</label>
-                            <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
+                            <label for="tel_inpt">Telefonnummer:</label>
+                            <input type="tel" name="tel" id="tel_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="070......."/>
                         </div>
-                        <div class="form-group smal" id="method">
-                            <label htmlFor="delivery_method">Leveransmetod</label>
-                            <select value={this.state.delivery_method} onChange={this.handle_detail_update} class="form-control" name="delivery_method" id="delivery_method">
-                                <option value="placeholder" disabled selected hidden>Välj här</option>
-                                <option value="hem">Hemleverans</option>
-                                <option value="hämta">Hämta i butik</option>
-                            </select>
+                        <div class="form-group smal">
+                            <label for="name_inpt">Namn:</label>
+                            <input type="text" name="name" id="name_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
+                        </div>
+                        <div class="form-group smal" >
+                            <label for="addr_inpt">Leveransaddress:</label>
+                            <input type="text" name="addr" id="addr_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
+                        </div>
+                        <div class="form-group smal" >
+                            <label for="post_nr_inpt">Postkod:</label>
+                            <input type="text" name="post_nr" id="post_nr_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
+                        </div>
+                        <div class="form-group smal" >
+                            <label for="code_inpt">Portkod:</label>
+                            <input type="text" name="code" id="code_inpt" onChange={this.handle_detail_update} class="form-control" aria-describedby="emailHelp" placeholder="0001"/>
                         </div>
                     </div>
                     <div class="h-divider"></div>
