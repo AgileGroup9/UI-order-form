@@ -101,7 +101,7 @@ class App extends React.Component {
 		const sum = kostnad.reduce((acc,val) => acc + val[1], 0);
 
 		// Renders form. For info about how to add stuff, google jsx
-		// TODO: remove inline css (dorCode smell)
+		// TODO: remove inline css (code smell)
 		return(
 			<div className="container-fluid " style={{'max-width': '800px;'}}>
 				<div>
