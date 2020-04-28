@@ -15,6 +15,11 @@
     font-weight: 400;
   }
   
+  span{
+    color: red;
+    font-size: medium;
+  }
+
   .h-divider{
     margin-top:5px;
     margin-bottom:5px;
@@ -65,6 +70,10 @@
     margin-left: 5px;
     background-color: red;
     font-size: 14px;
+  }
+
+  .invalid{
+    border: 1px solid red;
   }
 
   #detail-form{
