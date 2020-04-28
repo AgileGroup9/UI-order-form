@@ -43,10 +43,12 @@ class App extends React.Component {
 
 	handle_cart_update(item,delta){
 		const newValue = this.state.cart.get(item) + delta;
-		this.setState({
-			cart : this.state.cart.set(item,newValue),
-			delivery_method : this.state.delivery_method,
-		});
+		if(newValue < 0){
+			this.setState({
+				cart : this.state.cart.set(item,newValue),
+				delivery_method : this.state.delivery_method,
+			});
+		}
 	}
 
 	handle_detail_update(event) {
