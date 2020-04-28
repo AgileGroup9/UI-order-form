@@ -36,6 +36,10 @@ class App extends React.Component {
 			comments : '',
 		};
 
+		this.is_email_valid = true;
+		this.is_telNr_valid = true;
+		this.is_postalCode_valid = true;
+
 		// Required for intercepting onChange events from <input>
 		this.handle_detail_update = this.handle_detail_update.bind(this);
 	}
@@ -56,7 +60,9 @@ class App extends React.Component {
 		const name = target.name;
 		const value = target.value;
 		this.setState({
-			[name]: value    });
+			[name]: value
+		});
+		this.validate(name,value);
 	}
 
 	is_fields_empty(){
@@ -74,6 +80,10 @@ class App extends React.Component {
 			alert('Var snäll och fyll i alla obligatoriska fält');
 			return;
 		}
+		const validation_results = this.check_validation();
+		if(validation_results !== ''){
+			alert(validation_results);
+		}
 		fetch(target_addr,{
 			method: 'POST',
 			mode: 'no-cors', 
@@ -90,6 +100,49 @@ class App extends React.Component {
 				console.log('Delivery order failed: ' + response.body);
 			}
 		});
+	}
+
+	validate_email(str){
+		var re = /^[a-ö\-.]+@[a-ö]+\.[a-ö]+$/;
+		return re.exec(str) !== null;	
+	}
+
+	validate_tel(str){
+		var re = /^[0-9]{8,15}$/;
+		return re.exec(str.replace(/\s/g,'')) !== null;
+	}
+
+	validate_postalcode(str){
+		var re = /^[0-9]{5}$/;
+		return re.exec(str.replace(/\s/g,'')) !== null;
+	}
+
+	validate(name,value){
+		switch (name) {
+		case 'email':
+			this.is_email_valid = this.validate_email(value);
+			console.log('Validating Email: '+ this.is_email_valid);
+			break;
+		case 'telNr':
+			this.is_telNr_valid = this.validate_tel(value);
+			console.log('Validating Tel: '+ this.is_telNr_valid);
+			break;
+		case 'postalCode':
+			this.is_postalCode_valid = this.validate_postalcode(value);
+		}
+	}
+
+	check_validation(){
+		// Generates a string of (if any) validation errors that exist
+		const email_error = 'Ogiltig email address';
+		const tel_error = 'Ogiltig telefonnummer';
+		const postalCode_error = 'Ogiltig Postnummer';
+		var res = '';
+		res = this.is_email_valid ? res : res + email_error + '\n';
+		res = this.is_telNr_valid ? res : res + tel_error + '\n';
+		res = this.is_postalCode_valid ? res : res + postalCode_error + '\n';
+		return res;
+
 	}
 
 	state_to_json(){
@@ -161,11 +214,11 @@ class App extends React.Component {
 					<div id="detail-form">
 						<div className="form-group smal" style={{'max-width': '250px'}} id="email">
 							<label htmlFor="email_inpt">Email<span>*</span>:</label>
-							<input type="email" name="email" id="email_inpt" onChange={this.handle_detail_update} className="form-control"  placeholder="exempel@mail.se"/>
+							<input type="email" name="email" id="email_inpt" onChange={this.handle_detail_update} className={'form-control ' + (this.is_email_valid ? '' : 'invalid')}   placeholder="exempel@mail.se" pattern="[a-ö\-\.]+@[a-ö]+\.[a-ö]+"/>
 						</div>
 						<div className="form-group smal" id="tele">
 							<label htmlFor="tel_inpt">Telefonnummer<span>*</span>:</label>
-							<input type="tel" name="telNr" id="tel_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="070......."/>
+							<input type="tel" name="telNr" id="tel_inpt" onChange={this.handle_detail_update} className={'form-control ' + (this.is_telNr_valid ? '' : 'invalid')} aria-describedby="emailHelp" placeholder="070......."/>
 						</div>
 						<div className="form-group smal">
 							<label htmlFor="name_inpt">Namn<span>*</span>:</label>
@@ -177,7 +230,7 @@ class App extends React.Component {
 						</div>
 						<div className="form-group smal" >
 							<label htmlFor="post_nr_inpt">Postkod<span>*</span>:</label>
-							<input type="text" name="postalCode" id="post_nr_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
+							<input type="text" name="postalCode" id="post_nr_inpt" onChange={this.handle_detail_update} className={'form-control ' + (this.is_postalCode_valid ? '' : 'invalid')} aria-describedby="emailHelp" placeholder="123 45"/>
 						</div>
 						<div className="form-group smal" >
 							<label htmlFor="code_inpt">Portkod:</label>

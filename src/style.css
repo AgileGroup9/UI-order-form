@@ -72,6 +72,10 @@
     font-size: 14px;
   }
 
+  .invalid{
+    border: 1px solid red;
+  }
+
   #detail-form{
     display: grid;
     gap: 10px;
