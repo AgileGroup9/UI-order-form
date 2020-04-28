@@ -31,7 +31,7 @@ class App extends React.Component {
 			name : '',
 			telNr : '',
 			address : '',
-			dorCode : '',
+			doorCode : '',
 			postalCode : '',
 			comments : '',
 		};
