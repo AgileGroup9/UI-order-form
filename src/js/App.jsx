@@ -43,7 +43,7 @@ class App extends React.Component {
 
 	handle_cart_update(item,delta){
 		const newValue = this.state.cart.get(item) + delta;
-		if(newValue < 0){
+		if(newValue >= 0){
 			this.setState({
 				cart : this.state.cart.set(item,newValue),
 				delivery_method : this.state.delivery_method,
@@ -59,7 +59,21 @@ class App extends React.Component {
 			[name]: value    });
 	}
 
+	is_fields_empty(){
+		const current_state = {... this.state};
+		for (const property in current_state){
+			if(property != 'cart' && property != 'comments' && property != 'doorCode' && current_state[property] === ''){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	handle_submit(target_addr){
+		if(this.is_fields_empty()){
+			alert('Var snäll och fyll i alla obligatoriska fält');
+			return;
+		}
 		fetch(target_addr,{
 			method: 'POST',
 			mode: 'no-cors', 
@@ -143,31 +157,31 @@ class App extends React.Component {
 					<div className="h-divider"></div>
 
 					<h4 style={{'padding-top': '15px', 'padding-bottom':'10px'}}> <b>Totalkostnad:</b> {sum}kr</h4>
-        
+					<h5>(obligatoriska fält : <span>*</span>)</h5>
 					<div id="detail-form">
 						<div className="form-group smal" style={{'max-width': '250px'}} id="email">
-							<label htmlFor="email_inpt">Email:</label>
+							<label htmlFor="email_inpt">Email<span>*</span>:</label>
 							<input type="email" name="email" id="email_inpt" onChange={this.handle_detail_update} className="form-control"  placeholder="exempel@mail.se"/>
 						</div>
 						<div className="form-group smal" id="tele">
-							<label htmlFor="tel_inpt">Telefonnummer:</label>
+							<label htmlFor="tel_inpt">Telefonnummer<span>*</span>:</label>
 							<input type="tel" name="telNr" id="tel_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="070......."/>
 						</div>
 						<div className="form-group smal">
-							<label htmlFor="name_inpt">Namn:</label>
+							<label htmlFor="name_inpt">Namn<span>*</span>:</label>
 							<input type="text" name="name" id="name_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="Glen Glensson"/>
 						</div>
 						<div className="form-group smal" >
-							<label htmlFor="addr_inpt">Leveransaddress:</label>
+							<label htmlFor="addr_inpt">Leveransaddress<span>*</span>:</label>
 							<input type="text" name="address" id="addr_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="Pizzagatan 123"/>
 						</div>
 						<div className="form-group smal" >
-							<label htmlFor="post_nr_inpt">Postkod:</label>
+							<label htmlFor="post_nr_inpt">Postkod<span>*</span>:</label>
 							<input type="text" name="postalCode" id="post_nr_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="123 45"/>
 						</div>
 						<div className="form-group smal" >
 							<label htmlFor="code_inpt">Portkod:</label>
-							<input type="text" name="dorCode" id="code_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="0001"/>
+							<input type="text" name="doorCode" id="code_inpt" onChange={this.handle_detail_update} className="form-control" aria-describedby="emailHelp" placeholder="0001"/>
 						</div>
 					</div>
 					<div className="h-divider"></div>

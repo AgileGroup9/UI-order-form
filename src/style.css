@@ -15,6 +15,11 @@
     font-weight: 400;
   }
   
+  span{
+    color: red;
+    font-size: medium;
+  }
+
   .h-divider{
     margin-top:5px;
     margin-bottom:5px;
